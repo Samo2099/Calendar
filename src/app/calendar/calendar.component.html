@@ -1,0 +1,38 @@
+<div class="calendar">
+    <div class="header">
+        <div class="head">
+            <button class="prev" mat-button (click)="prev()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_arrow_left</mat-icon>
+            </button>
+            <h1>
+                <b>{{oneMontsDate[0].date| date:"MMM"}}</b>
+                {{year}}
+            </h1>
+            <button class="next" mat-button (click)="next()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+        <div class="week">
+            <div class="weekDay" *ngFor="let day of weekDays">
+                <h3>{{day}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="day" *ngFor="let item of emptyStartDivs;let i = index" [ngClass]="{'gray':i===0}"></div>
+        <div class="day example-ripple-container" matRipple *ngFor="let day of oneMontsDate"
+            [ngClass]="{'gray':day.date.getDay()===6||day.date.getDay()===0|| i===0,
+             'thisDay':day.date.toDateString() === thisDay.toDateString(),
+            'important':day.important}"
+             (click)="addImportantDay(day)"
+             >
+
+            {{day.date | date:'d'}}
+        </div>
+
+        <div class="day" *ngFor="let item of emptyEndDivs;let i = index" [ngClass]="{'gray':i===emptyEndDivs.length-1}">
+        </div>
+    </div>
+</div>
+
+

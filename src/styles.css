@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body{
+    background-color: #202022;
+    color: #dcdcdc;
+}
+.calendar{
+    width: 800px;
+    margin: 0 auto;
+}
+.header{
+    width: 100%;
+}
+.head{
+    width: 100%;
+    position: relative;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.head button{
+    position: absolute;
+    background-color: transparent;
+}
+button mat-icon{
+    color:white;
+    font-size: 50px!important;
+    height: auto!important;
+    width: auto!important;
+}
+.prev{
+    left: 0;
+    top: 10px;
+    padding: 5px 10px;
+}
+.next{
+    right: 0;
+    top: 10px;
+    padding: 5px 10px;
+}
+.week{
+    width: 100%;
+    display: flex;
+}
+.weekDay{
+    width: calc(100%/7);
+    text-align: right;
+    padding: 0 10px;
+}
+.body{
+    display: flex;
+    flex-wrap: wrap;
+}
+.day{
+    text-align: right;
+    padding: 15px;
+    width: calc(100%/7)!important;
+    height: 80px!important;
+    border:.5px solid #363637;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.mat-ripple-element{
+    z-index: 5!important;
+}
+.day span{
+    z-index: 999!important;
+}
+.gray{
+    background-color: #28292a;
+    color: #99999a;
+}
+.important{
+    background-color: #ec5545!important;
+    color: white !important;
+}
+.thisDay{
+    color: #ec5545;
+}
