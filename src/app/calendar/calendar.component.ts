@@ -62,7 +62,7 @@ export class CalendarComponent {
     this.createMonth(this.year, this.month);
   }
 
-  addImportantDay(day: Date) {
+  changeImportantDay(day: Date) {
     if (this.importantDay === day.toDateString()) {
       this.importantDay = '';
     }

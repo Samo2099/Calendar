@@ -21,10 +21,9 @@
     <div class="body">
         <div class="day" *ngFor="let item of emptyStartDivs;let i = index" [ngClass]="{'gray':i===0}"></div>
         <div class="day example-ripple-container" matRipple *ngFor="let day of oneMontsDate"
-            [ngClass]="{'gray':day.getDay()===6||day.getDay()===0|| i===0,
+            [ngClass]="{'gray':day.getDay()===6||day.getDay()===0,
             'important':day.toDateString() === importantDay}"
-             (click)="addImportantDay(day)"
-             >
+             (click)="changeImportantDay(day)">
 
             <span [ngClass]="{'thisDay':day.toDateString() === thisDay.toDateString()}">{{day | date:'d'}}</span>
         </div>
