@@ -77,5 +77,8 @@ button mat-icon{
     color: white !important;
 }
 .thisDay{
-    color: #ec5545;
+    background-color: #ec5545;
+    padding: 2px;
+    border-radius: 50%;
+    color: black;
 }
