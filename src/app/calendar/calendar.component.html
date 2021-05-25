@@ -5,7 +5,7 @@
                 <mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_arrow_left</mat-icon>
             </button>
             <h1>
-                <b>{{oneMontsDate[0].date| date:"MMM"}}</b>
+                <b>{{oneMontsDate[0]| date:"MMM"}}</b>
                 {{year}}
             </h1>
             <button class="next" mat-button (click)="next()">
@@ -21,13 +21,13 @@
     <div class="body">
         <div class="day" *ngFor="let item of emptyStartDivs;let i = index" [ngClass]="{'gray':i===0}"></div>
         <div class="day example-ripple-container" matRipple *ngFor="let day of oneMontsDate"
-            [ngClass]="{'gray':day.date.getDay()===6||day.date.getDay()===0|| i===0,
-             'thisDay':day.date.toDateString() === thisDay.toDateString(),
-            'important':day.important}"
+            [ngClass]="{'gray':day.getDay()===6||day.getDay()===0|| i===0,
+             'thisDay':day.toDateString() === thisDay.toDateString(),
+            'important':day.toDateString() === importantDay}"
              (click)="addImportantDay(day)"
              >
 
-            {{day.date | date:'d'}}
+            {{day | date:'d'}}
         </div>
 
         <div class="day" *ngFor="let item of emptyEndDivs;let i = index" [ngClass]="{'gray':i===emptyEndDivs.length-1}">

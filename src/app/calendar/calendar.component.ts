@@ -6,45 +6,40 @@ import { Day } from '../models/day.model';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent{
 
   weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   emptyStartDivs = [];
   emptyEndDivs = [];
-  importantDays:[string];
-  imp:string;
+  importantDay:string;
   
   thisDay = new Date();
-  month = new Date().getMonth();
-  year = new Date().getFullYear();
-  oneMontsDate:[Day];
-  dayOneForMonth:Date;
+
+  month = this.thisDay.getMonth();
+  year = this.thisDay.getFullYear();
+
+  oneMontsDate:[Date];
 
   constructor(){
     this.createMonth(this.year,this.month);
-    
-  }
-  ngOnInit(): void {
   }
 
   createMonth(year:number, month:number){
-    this.dayOneForMonth = new Date(year, month, 1);
-    this.oneMontsDate = [{date:new Date()}];
+    const dayOneForMonth = new Date(year, month, 1);
+    this.oneMontsDate = [null];
     this.emptyStartDivs = [];
     this.emptyEndDivs = [];
 
-    for (let i = 0; this.dayOneForMonth.getMonth()===month; i++) {
-      // const important = true?this.importantDays.indexOf(this.dayOneForMonth.toDateString())>-1:false
-      const important = true?this.imp===this.dayOneForMonth.toDateString():false;
-
-      this.oneMontsDate[i] = {date:new Date(this.dayOneForMonth.toDateString()), important:important};
-      this.dayOneForMonth.setDate(this.dayOneForMonth.getDate()+1);
+    for (let i = 0; dayOneForMonth.getMonth()===month; i++) {
+      this.oneMontsDate[i] = new Date(dayOneForMonth.toDateString());
+      dayOneForMonth.setDate(dayOneForMonth.getDate()+1);
     }
-    console.log(this.oneMontsDate)
-    for (let i = 0; i < this.oneMontsDate[0].date.getDay(); i++) {
+
+    for (let i = 0; i < this.oneMontsDate[0].getDay(); i++) {
       this.emptyStartDivs[i] = i;
     }
-    for (let i = 0; i < 6 - this.oneMontsDate[this.oneMontsDate.length-1].date.getDay(); i++) {
+
+    for (let i = 0; i < 6 - this.oneMontsDate[this.oneMontsDate.length-1].getDay(); i++) {
       this.emptyEndDivs[i] = i;
     }
   }
@@ -67,18 +62,8 @@ export class CalendarComponent implements OnInit {
     this.createMonth(this.year,this.month);
   }
 
-  addImportantDay(day:Day){
-    if(day.important){
-      // this.importantDays.splice(this.importantDays.indexOf(day.date.toDateString()),1);
-      this.imp = '';
-      day.important = false;
-    }else{
-    this.imp= day.date.toDateString()
-    day.important=true;
-    this.createMonth(this.year,this.month);
-    }
-    console.log(this.importantDays)
-    
+  addImportantDay(day:Date){
+    this.importantDay = day.toDateString();
   }
 
 }
